@@ -46,8 +46,8 @@
         };
         Ball.prototype.move=function () {
             var self = this;
-            this.speedx=(Math.random()*10-5)+1;
-            this.speedy=(Math.random()*10-5)+1;
+            this.speedx=Math.random()*10-5;
+            this.speedy=Math.random()*10-5;
             this.time = setInterval (function () {
                 self.left+=self.speedx;
                 self.div.style.left=self.left+"px"
