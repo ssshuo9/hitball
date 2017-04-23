@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>弹球</title>
+    <style>
+        #box {
+            padding:0;
+            width:800px;
+            height:600px;
+            border:1px solid red;
+            margin:0 auto;
+            position: relative;
+        }
+        .ball {
+            width:50px;
+            height:50px;
+            border-radius:50%;
+            border:1px solid blue;
+            position: absolute;
+            left:0;
+            top:0;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+
+    </div>
+    <script>
+        function  Ball () {
+            this.left=parseInt(Math.random()*750);
+            this.top=parseInt(Math.random()*550);
+            this.create();
+            this.move();
+        };
+        Ball.prototype.create=function (){
+            var box=document.getElementById("box");
+            this.div=document.createElement("div");
+            box.appendChild(this.div)
+            this.div.className="ball";
+            this.div.style.left=this.left+"px";
+            this.div.style.top=this.top+"px";
+            document.title=(this.left)+"|"+(this.top)
+
+        };
+        Ball.prototype.move=function () {
+            var self = this;
+            this.speedx=Math.random()*10-5;
+            this.speedy=Math.random()*10-5;
+            this.time = setInterval (function () {
+                self.left+=self.speedx;
+                self.div.style.left=self.left+"px"
+                self.top+=self.speedy;
+                self.div.style.top=self.top+"px";
+
+                if (self.left <= 0 || self.left >= 750) {
+                    self.speedx*=-0.8;
+                    console.log(self.speedx)
+
+                } else if (self.top <= 0 || self.top >= 550){
+                    self.speedy*=-0.8;
+                }
+            },30)
+        };
+            new Ball();
+            new Ball();
+            new Ball();
+    </script>
+</body>
+</html>
